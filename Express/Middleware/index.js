@@ -1,5 +1,23 @@
 const express = require('express');
+const zod = require('zod');
 const app = express();
+
+const schema = zod.array(zod.number());
+  
+app.use(express.json());
+
+app.post("/health-checkup",  function (req, res) {
+  // kidneys = [1, 2]
+  const kidneys = req.body.kidneys;
+  const response = schema.safeParse(kidneys)
+  res.send({
+    response
+  })
+});
+
+
+
+
 
 //app.get('/health-check', (req, res) => {
 
@@ -23,14 +41,21 @@ const app = express();
 //
 //});
 
-app.use(express.json());
-
-app.post('/health-checkup', (req, res) => {
-    const kid = req.body.kid;
-    const kidLength = kid.length;
-
-    res.send ("you have" + kidLength + "kids");
-})
-
+//app.use(express.json());
+//
+//app.post('/health-checkup', (req, res) => {
+//    const kid = req.body.kid;
+//    const kidLength = kid.length;
+//
+//    res.send ("you have" + kidLength + "kids");
+//})
+//
+////globsl catch
+//
+//app.use( (err, res, res, next) => {
+//    res.json ({
+//        msg: "an error occoured"
+//    })
+//})
 
 app.listen(3000);
