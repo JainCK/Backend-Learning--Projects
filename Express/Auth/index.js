@@ -23,8 +23,9 @@ const ALL_USERS = [
 ];
 
 function userExists(username, password) {
-  // write logic to return true or false if this user exists
-  // in ALL_USERS array
+  const user = ALL_USERS.find(user => user.username === username && user.password === password);
+  
+  return user !== undefined;
 }
 
 app.post("/signin", function (req, res) {
