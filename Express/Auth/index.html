@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+
+//        function getAnimalData() {
+//         fetch("https://fakerapi.it/api/v1/persons")
+//         .then(function(response){
+//            response.json()
+//            .then((finalData) => {
+//                console.log(finalData);
+//            })
+//         })
+           
+
+// same funtionality as abopve but in async await syntax
+
+        async function getAnimalData() {
+        const response = await fetch("https://fakerapi.it/api/v1/persons")
+        const finalData = await response.json()
+        document.getElementById("container").innerHTML =JSON.stringify(finalData.data)
+        }
+
+    </script>
+    <button onclick="getAnimalData()">Click me</button>
+</body>
+</html>
