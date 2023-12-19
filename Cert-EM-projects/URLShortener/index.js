@@ -1,11 +1,29 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const app = express();
+const mongoose = require('mongoose');
+const dns = require('dns');
+const bodyParser = require('body-parser');
 
+
+
+const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+mongoose.connect(process.env.MONGO_URI, {useNewURLParser: true, useUnifiedTopology: true });
+const Schema = mongoose.Schema;
+
+const urlSchema = new Schema ({
+  orginal_url: string,
+  short_url: Number,
+});
+
+const Url = mongoose.model('Url', urlSchema);
+
+
 
 app.use('/public', express.static(`${process.cwd()}/public`));
 
