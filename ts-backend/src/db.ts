@@ -1,6 +1,6 @@
 import { User } from "./models/user";
 
-const users: User[] = [];
+export const users: User[] = [];
 
 export const addUser = (user: User) => {
   users.push(user);
